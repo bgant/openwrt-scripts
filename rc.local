@@ -1,9 +1,9 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
-# Keep rc.local in /root git repo
+# Keep rc.local in git repo
 # rm /etc/rc.local
-# ln -s /root/rc.local /etc/rc.local
+# ln -s /root/openwrt-scripts/rc.local /etc/rc.local
 
 # Check if sysupgrade has been performed
 opkg list-installed | grep luci-ssl-openssl > /dev/null
