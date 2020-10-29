@@ -4,11 +4,6 @@
 # Asus RT-N56U: https://openwrt.org/toh/asus/rt-n56u
 # Asus RT-N56U: https://downloads.openwrt.org/releases/19.07.2/targets/ramips/rt3883/
 #
-# Preserve files during upgrade:
-#  vi /etc/sysupgrade.conf
-#    /root
-#    /etc/rc.local
-#
 
 ##########################################                                                                                
 # Variables for specific OpenWRT device                                                                                   
@@ -31,6 +26,21 @@ rm /tmp/releases 2> /dev/null
 rm /tmp/version.buildinfo 2> /dev/null
 rm /tmp/*.bin 2> /dev/null      
 rm /tmp/sha256sums* 2> /dev/null
+
+
+##########################################
+# Preserve files during upgrade
+##########################################
+if [ $(grep -c /etc/rc.local /etc/sysupgrade.conf) -eq "0" ]
+then
+    echo "/etc/rc.local" >> /etc/sysupgrade.conf
+fi
+
+if [ $(grep -c /root /etc/sysupgrade.conf) -eq "0" ]
+then
+    echo "/root" >> /etc/sysupgrade.conf
+fi
+
 
 
 ##########################################                                                                                          
