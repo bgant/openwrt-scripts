@@ -7,11 +7,10 @@
 # | ----------- Hour (0 - 23)
 # ------------- Minute (0 - 59)
 
-# Keep crontab in /root with other custom files
 # cp crontab /etc/crontabs/root
 # crontab -l
-# crontab -e  # Overwrites /etc/crontabs/root even if no changes made (so no symlink)
+# crontab -e  # This overwrites /etc/crontabs/root even if no changes made (no symlink)
 
-15 01 * * 0 /sbin/reboot
-15 02 * * * /root/upgrade-firmware.sh
-15 03 * * * /root/upgrade-packages.sh
+03 01 * * 0 /sbin/reboot
+03 02 * * * /root/upgrade-firmware.sh
+03 03 * * * /root/upgrade-packages.sh
