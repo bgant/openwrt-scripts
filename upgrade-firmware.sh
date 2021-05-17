@@ -46,10 +46,13 @@ fi
 ##########################################                                                                                          
 # What is the Latest Release?                                                                                                      
 ##########################################                                                                                          
+source /etc/openwrt_release
+echo "Current Version: $DISTRIB_RELEASE"
+
 cd /tmp                                                                                                                             
 wget -q "https://downloads.openwrt.org/releases/"                                                                                     
 RELEASE=`cat releases | awk -F'href="' '{print $2}' | awk -F'/' '{print $1}' | grep ^[0-9] | grep -v rc | sort | tail -n1`
-echo "Current Release: $RELEASE"
+echo "Latest Version:  $RELEASE"
 
 
 ##########################################
@@ -66,13 +69,13 @@ SIGNATURE="https://downloads.openwrt.org/releases/$RELEASE/targets/$TARGET1/$TAR
 ##########################################
 cd /tmp
 wget -q $VERSION
-cmp /etc/openwrt_version /tmp/version.buildinfo  # No diff command / Using cmp "compare" command
+cmp -s /etc/openwrt_version /tmp/version.buildinfo  # No diff command / Using cmp "compare" command
 if [ $? == 0 ]  # File contents match
 then
-  echo "New Firmware: FALSE"
+  echo "New Firmware Build Available: FALSE"
   exit 0
 else
-  echo "New Firmware: TRUE"
+  echo "New Firmware Build Available: TRUE"
 fi
 
 
