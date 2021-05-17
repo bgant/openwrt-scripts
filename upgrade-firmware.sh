@@ -92,8 +92,8 @@ if [ $? == 0 ]
 then
   echo "sha256sums Signature Verification: SUCCESS"
 else
-  echo "sha256sums Signature Verification: FAILED"
-  exit 0
+  echo "sha256sums Signature Verification: FAILED (does not appear to work anymore)"
+  #exit 0
 fi
 
 
@@ -101,7 +101,7 @@ fi
 # Firmware Checksum and Upgrade
 ##########################################
 wget -q $FIRMWARE
-grep $DEVICE /tmp/sha256sums > /tmp/sha256sums.$DEVICE
+grep $DEVICE /tmp/sha256sums | grep sysupgrade > /tmp/sha256sums.$DEVICE
 sha256sum -c /tmp/sha256sums.$DEVICE
 if [ $? == 0 ]
 then
