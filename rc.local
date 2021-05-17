@@ -11,7 +11,7 @@ if [ $? != 0 ]
 then
   echo "Installing missing packages..."
   opkg -V0 update
-  opkg -V0 install luci-ssl-openssl ca-bundle ca-certificates
+  opkg -V0 install luci-ssl-openssl ca-bundle ca-certificates git-http
   opkg -V0 list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade
   reboot
 fi
